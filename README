@@ -1,0 +1,24 @@
+Linux Hardeningn Semi Automatic Bash Script.
+
+-- SSH Hardening 
+-- Firewall Hardening  | Iptable Rules 
+-- Log management     
+-- antimalware 
+
+Installing tools 
+
+- lynis
+- ansible
+- dev-sec.io playbook
+- rkhunter   | malware scanner
+- apt-lischanges
+- sysstat | systemc accounting tools
+- fail2ban | intrusion prevention
+- aide | file integrity tools
+- unattended-upgrades | automatic update
+- auditd | log management  , aureport 
+- snort | IDPS  # optional 
+
+
+
+## with this Hardening script the lynis Hardening score is on an average 80% achievable 
