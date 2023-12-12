@@ -1,24 +1,46 @@
-Linux Hardeningn Semi Automatic Bash Script.
 
--- SSH Hardening 
--- Firewall Hardening  | Iptable Rules 
--- Log management     
--- antimalware 
+# Linux Hardening Semi-Automatic Bash Script
 
-Installing tools 
+This script is designed to bolster the security of Linux systems. It integrates various tools and practices to harden your Linux environment, targeting an average Lynis hardening score of 80%. 
 
-- lynis
-- ansible
-- dev-sec.io playbook
-- rkhunter   | malware scanner
-- apt-lischanges
-- sysstat | systemc accounting tools
-- fail2ban | intrusion prevention
-- aide | file integrity tools
-- unattended-upgrades | automatic update
-- auditd | log management  , aureport 
-- snort | IDPS  # optional 
+## Features
+
+- **SSH Hardening**: Configures SSH to enhance security, including disabling root login, changing default ports, and using key-based authentication.
+- **Firewall Hardening**: Implements robust Iptable rules to secure network traffic.
+- **Log Management**: Organizes and secures system logs for better tracking and analysis.
+- **Antimalware Measures**: Employs tools to detect and prevent malware infections.
+
+## Prerequisites
+
+Before running the script, ensure you have the following tools installed:
+
+- **Lynis**: Security auditing tool for Unix/Linux systems.
+- **Ansible**: Automation tool for IT tasks, including security hardening.
+- **Dev-Sec.io Playbook**: Collection of Ansible roles for security.
+- **RKHunter**: Rootkit Hunter, a scanner for detecting malware and rootkits.
+- **Apt-listchanges**: Tool to list and manage changes in packages.
+- **Sysstat**: System performance tools for Linux.
+- **Fail2Ban**: Intrusion prevention software framework.
+- **AIDE (Advanced Intrusion Detection Environment)**: File and directory integrity checker.
+- **Unattended-Upgrades**: Automated tool for handling updates.
+- **Auditd with Aureport**: Tools for logging and analyzing system events.
+- **Snort**: Network intrusion detection and prevention system (optional).
+
+## Installation
+
+To install the necessary tools, run the following commands:
+
+```bash
+chmod +x script.sh
+```
+
+```bash
+./script.sh
+```
+
+After installing the prerequisites, you can execute the script as follows:
 
 
+The script will automatically apply best practices for system hardening, aiming to achieve an average Lynis hardening score of 80%.
+---
 
-## with this Hardening script the lynis Hardening score is on an average 80% achievable 
