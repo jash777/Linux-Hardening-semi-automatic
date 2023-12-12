@@ -1,0 +1,238 @@
+### System and Software
+
+1. **Update and Upgrade All Packages**
+2. **Remove Unnecessary Packages and Services**
+3. **Regularly Scan for Vulnerabilities**
+4. **Use a Minimalist Base Image for Production**
+5. **Enable and Configure Automatic Updates**
+
+### User and Authentication
+
+1. **Enforce Strong Password Policies**
+2. **Use Two-Factor Authentication**
+3. **Limit Root Access**
+4. **Regularly Review User Accounts and Privileges**
+5. **Configure User Account Lockout Policy**
+6. **Remove Guest Accounts**
+7. **Use Centralized Authentication Service like LDAP or Kerberos**
+
+### Network Security
+
+1. **Configure a Firewall (e.g., iptables, UFW)**
+2. **Implement Network Access Controls**
+3. **Disable Unused Network Ports and Services**
+4. **Secure Network Time Protocol (NTP) Configuration**
+5. **Use SSH for Remote Access**
+6. **Disable SSH Root Login**
+7. **Use Key-Based SSH Authentication**
+8. **Regularly Rotate SSH Keys**
+9. **Configure SSH Idle Timeout Interval**
+10. **Implement Network Segmentation and Isolation**
+
+### Filesystem Security
+
+1. **Disable Unused Filesystems**
+2. **Implement Least Privilege on File Permissions**
+3. **Enable and Configure AppArmor or SELinux**
+4. **Use Noexec, Nodev, and Nosuid Options for /tmp**
+5. **Regularly Scan for Unauthorized File Changes**
+6. **Encrypt Sensitive Data**
+7. **Ensure Proper Partitioning for Specific Directories**
+
+### Kernel and Boot Security
+
+1. **Secure Boot Settings**
+2. **Implement Kernel Hardening (e.g., sysctl.conf)**
+3. **Disable Kernel Module Loading**
+4. **Secure GRUB Configuration**
+
+### Logging and Auditing
+
+1. **Enable and Configure System Logging (e.g., rsyslog, syslog-ng)**
+2. **Regularly Review Logs**
+3. **Configure Centralized Logging**
+4. **Implement Audit Daemon for Auditing Activities**
+5. **Regularly Archive and Backup Logs**
+
+### Intrusion Detection and Prevention
+
+1. **Install and Configure Intrusion Detection System (e.g., AIDE, Fail2Ban)**
+2. **Regularly Update Intrusion Detection Signatures**
+3. **Implement Real-Time Alerting and Monitoring**
+4. **Perform Regular Security Auditing**
+
+### Application Security
+
+1. **Use Application Whitelisting**
+2. **Secure Web Servers and Databases**
+3. **Regularly Update Web Applications**
+4. **Implement Web Application Firewall (WAF)**
+5. **Use Containers for Application Isolation**
+
+### Compliance and Best Practices
+
+1. **Adhere to Security Compliance Standards (e.g., CIS Benchmarks, NIST)**
+2. **Conduct Regular Security Training and Awareness**
+3. **Regularly Perform Security Assessments and Penetration Testing**
+
+### Additional Considerations
+
+- **Document Security Policies and Procedures**
+- **Regularly Review and Update Security Policies**
+- **Participate in Security Forums and Stay Updated on Latest Threats**
+
+
+
+- [ ]  Update System Packages: `sudo apt-get update && sudo apt-get upgrade` (Ubuntu) or `sudo yum update` (CentOS).
+- [ ]  Remove Unnecessary Packages: `sudo apt-get autoremove` (Ubuntu) or `sudo yum autoremove` (CentOS).
+- [ ]  Enable and Configure Firewall: `sudo ufw enable` (Ubuntu) or `sudo systemctl start firewalld` (CentOS).
+- [ ]  Enforce Strong Password Policy: Edit `/etc/login.defs`.
+- [ ]  Configure Account Lockout Policy: Modify `/etc/pam.d/common-auth`.
+- [ ]  Limit Root Access: Prefer using `sudo` over direct root login.
+- [ ]  Edit SSH Config: Modify `/etc/ssh/sshd_config` to disable root login, change port, and use key-based authentication.
+- [ ]  Configure Auditd: Set up using `/etc/audit/auditd.conf`.
+- [ ]  Enable System Logging: Configure `rsyslog` or `syslog`.
+- [ ]  Set Correct Permissions: Regularly check with `chmod` and `chown`.
+- [ ]  Partition Mount Options: Edit `/etc/fstab` for options like `nosuid`, `nodev` for `/tmp`, `/var`.
+- [ ]  Enable and Configure SELinux/AppArmor: Ensure it's enabled and properly configured.
+- [ ]  Disable Unused Network Services: Check with `netstat` or `ss`.
+- [ ]  Implement TCP Wrappers: Configure `/etc/hosts.allow` and `/etc/hosts.deny`.
+- [ ]  Automate Security Updates: Set up `unattended-upgrades` (Ubuntu) or `yum-cron` (CentOS).
+- [ ]  Containerize Services: Use Docker or LXC.
+- [ ]  Implement Regular Backups: Use tools like `rsync` or `tar`.
+- [ ]  Test Backups: Regularly ensure backups are restorable.
+- [ ]  Set Up Intrusion Detection System: Install and configure tools like Snort.
+- [ ]  Disable USB Mounting: Edit `/etc/modprobe.d`.
+- [ ]  Restrict Compiler Access: Allow only trusted users.
+- [ ]  Disable IPv6 if Not Used: Edit `/etc/sysctl.conf`.
+- [ ]  Configure Kernel Hardening: Edit `/etc/sysctl.conf` for kernel parameters.
+- [ ]  Limit Cron Jobs to Authorized Users: Edit `/etc/cron.allow`.
+- [ ]  Configure Time Synchronization: Use NTP.
+- [ ]  Disable Unnecessary SUID and SGID Binaries: Find with `find / -perm /6000`.
+- [ ]  Audit Open Ports: Regularly check with `nmap`.
+- [ ]  Implement Mandatory Access Controls: Use SELinux or AppArmor.
+- [ ]  Install and Configure Fail2Ban: Protect against brute-force attacks.
+- [ ]  Conduct Regular Security Audits: Use tools like Lynis.
+- [ ]  Document All Changes: Maintain records of configurations and changes.
+- [ ]  Create Scripts for Repeated Tasks: Automate with shell scripts.
+
+
+# **Partitioning**
+
+- [ ]  **Separate partitions**
+    - [ ]  Ensure /boot located on separate partition #low
+    - [ ]  Ensure /home located on separate partition #low
+    - [ ]  Ensure /usr located on separate partition #low
+    - [ ]  Ensure /var located on separate partition #medium
+    - [ ]  Ensure /var/log and /var/log/audit located on separate partitions #high
+    - [ ]  Ensure /tmp and /var/tmp located on separate partitions #high
+- [ ]  **Restrict mount options**
+    - [ ]  Restrict /usr partition mount options #low
+    - [ ]  Restrict /var partition mount options #low
+    - [ ]  Restrict /var/log and/var/log/audit partitions mount options #low
+    - [ ]  Restrict /proc partition mount options #low
+    - [ ]  Restrict /boot partition mount options #medium
+    - [ ]  Restrict /boot partition mount options #medium
+    - [ ]  Restrict /varand/var/tmp partitions mount options #medium
+    - [ ]  Restrict /dev/shm partition mount options #medium
+- [ ]  **Polyinstantiated directories**
+    - [ ]  Setting up polyinstantiated /var and /var/tmp directories #medium
+- [ ]  **Shared memory**
+    - [ ]  Set group for/dev/shm #low
+    - [ ]  Encrypt swap partition #low
+- [ ]  **Summary Checklist**
+    - [ ]  Separate/boot #low
+    - [ ]  Separate/home #low
+    - [ ]  Separate/usr #low
+    - [ ]  Separate/var #medium
+    - [ ]  Separate /var/log and /var/log/audit #high
+    - [ ]  Separate /tmp and /var/tmp #high
+    - [ ]  Restrict /usr mount options #low
+    - [ ]  Restrict /var mount options #low
+    - [ ]  Restrict /var/log and /var/log/audit mount options #low
+    - [ ]  Restrict /proc mount options #low
+    - [ ]  Restrict /boot mount options #medium
+    - [ ]  Restrict /home mount options #medium
+    - [ ]  Restrict /tmp/ and /var/tmp mount options #medium
+    - [ ]  Restrict /dev/shm mount options #medium
+    - [ ]  Polyinstantiated /tmp and /var/tmp #medium
+    - [ ]  Set group for /dev/shm #low
+    - [ ]  Encrypt swap #low
+
+# 🐧 **Linux Kernel**
+
+- [ ]  **Kernel logs**
+    - [ ]  Restricting access to kernel logs #low
+- [ ]  **Kernel pointers**
+    - [ ]  Restricting access to kernel pointers #low
+- [ ]  **ExecShield**
+    - [ ]  ExecShield protection #low
+- [ ]  **Memory protections**
+    - [ ]  Randomise memory space #low
+- [ ]  **Summary checklist**
+    - [ ]  Restricting access to kernel logs #low
+    - [ ]  Restricting access to kernel pointers #low
+    - [ ]  ExecShield protection #low
+    - [ ]  Randomise memory space #low
+
+# 📜 **Logging**
+
+- [ ]  **Syslog**
+    - [ ]  Ensure syslog service is enabled and running #medium
+    - [ ]  Send syslog data to external server #medium
+- [ ]  **Summary checklist**
+    - [ ]  Ensure syslog service is enabled and running #medium
+    - [ ]  Ensure syslog service is enabled and running #medium
+
+# 👥 **Users and Groups**
+
+- [ ]  **Passwords**
+    - [ ]  Update password policy (PAM) #medium
+    - [ ]  Limit password reuse (PAM) #medium
+    - [ ]  Secure /etc/login.defs password policy #medium
+- [ ]  **Logon Access**
+    - [ ]  Set auto logout inactive users #low
+    - [ ]  Set last logon/access notification #low
+    - [ ]  Lock out accounts after a number of incorrect login (PAM) #medium
+- [ ]  **Summary Checklist**
+    - [ ]  Update password policy #medium
+    - [ ]  Limit password reuse #medium
+    - [ ]  Secure /etc/login.defs password policy #medium
+    - [ ]  Set auto logout inactive users #low
+    - [ ]  Set last logon/access notification #low
+    - [ ]  Lock out accounts after a number of incorrect login #medium
+
+# 🗄 **Filesystem**
+
+- [ ]  **Hardlinks & Symlinks**
+    - [ ]  Enable hard/soft link protection. #low
+- [ ]  **Dynamic Mounting and Unmounting**
+    - [ ]  Disable uncommon filesystems #medium
+- [ ]  **Summary checklist**
+    - [ ]  Enable hard/soft link protection #low
+    - [ ]  Disable uncommon filesystems #medium
+
+# ✨ **SELinux & Auditd**
+
+- [ ]  **SELinux Enforcing**
+    - [ ]  Set SELinux Enforcing mode #high
+- [ ]  **Summary checklist**
+    - [ ]  Set SELinux Enforcing mode #high
+
+# 🕸 **Network**
+
+- [ ]  **TCP/SYN**
+    - [ ]  Enable TCP SYN Cookie protection #medium
+- [ ]  **Routing**
+    - [ ]  Disable IP source routing #medium
+- [ ]  **ICMP Protocol**
+    - [ ]  Disable ICMP redirect acceptance #medium
+    - [ ]  Enable ignoring to ICMP requests #medium
+- [ ]  **Broadcast**
+    - [ ]  Enable ignoring broadcasts request #medium
+- [ ]  **Summary checklist**
+    - [ ]  Enable TCP SYN Cookie protection #medium
+    - [ ]  Disable IP source routing #medium
+    - [ ]  Disable ICMP redirect acceptance #medium
+    - [ ]  Enable ignoring to ICMP requests #medium
+    - [ ]  Enable ignoring broadcasts request #medium

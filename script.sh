@@ -300,3 +300,6 @@ sudo lynis audit system || echo "Lynis audit encountered issues"
 
 # End of script
 echo "Script and Lynis audit finished."
+
+
+
