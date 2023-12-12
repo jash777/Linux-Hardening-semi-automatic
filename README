@@ -1,4 +1,4 @@
-
+# NOTE: ### This will Work on latest ubntu version ### tested on Ubuntu Version ###
 # Linux Hardening Semi-Automatic Bash Script
 
 This script is designed to bolster the security of Linux systems. It integrates various tools and practices to harden your Linux environment, targeting an average Lynis hardening score of 80%. 
